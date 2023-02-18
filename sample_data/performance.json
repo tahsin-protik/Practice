@@ -1,0 +1,31 @@
+{
+   "status": true,
+   "data": [
+          {
+             "team_id": 100,
+             "solve": 5,
+             "penalty": 560,
+             "team_name": "ABC"
+          },
+
+          {
+                    "team_id": 101,
+                    "solve": 7,
+                    "penalty": 560,
+                    "team_name": "RAS"
+          },
+
+          {
+                    "team_id": 50,
+                    "solve": 6,
+                    "penalty": 601,
+                    "team_name": "UIU"
+          },
+          {
+                    "team_id": 51,
+                    "solve": 8,
+                    "penalty": 560,
+                    "team_name": "UIU"
+          }
+   ]
+}
