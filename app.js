@@ -8,7 +8,7 @@ const sorting=require('./services/sorting.js');
     let file_path = "/Practice/";
     let file_name = "result.json";
 
-    fs.writeFileSync( path.join(__dirname, file_name) , JSON.stringify(data));
+    fs.writeFileSync( path.join(__dirname,'/sample_data/', file_name) , JSON.stringify(data));
     //console.log(output);
 
 
