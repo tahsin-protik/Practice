@@ -13,6 +13,7 @@ const sorting=require('./services/sorting.js');
     //console.log(output);
 
     cf.findingResult("Rajshahi University of Engineering and Technology");
+    cf.createRank(1795,"Rajshahi University of Engineering and Technology");
 
 
 
