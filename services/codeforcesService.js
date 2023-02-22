@@ -32,7 +32,7 @@ async function findingResult(org){
 async function findMatch(data,org){
     const users= await findingResult(org);
     let i,j,u_sz=users.length,d_sz=data.data.result.rows.length;
-    console.log(d_sz, u_sz);
+    //console.log(d_sz, u_sz);
     const res=[];
     for(i=0;i<u_sz;i++){
         for(j=0;j<d_sz;j++){
