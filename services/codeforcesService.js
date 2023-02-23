@@ -1,9 +1,18 @@
 const axios = require('axios');
+require('dotenv').config()
+const { PrismaClient } = require('@prisma/client')
+const prisma = new PrismaClient()
 
 async function userFetch(){
-        const response = await fetch("https://codeforces.com/api/user.ratedList?activeOnly=true&includeRetired=false");
-        const result = await response.json();
+    try{
+        const response = await axios.get("https://codeforces.com/api/user.ratedList?activeOnly=false&includeRetired=false");
+        const result = response.data;
         return result;
+    }
+    catch(err){
+        console.log(err);
+    }
+        
 }
 
 async function filtering(data,org){
@@ -23,6 +32,25 @@ async function findingResult(org){
     const path = require('path')
     let file_name = "userdata.json";
     fs.writeFileSync( path.join(__dirname,`../sample_data/`, file_name) , JSON.stringify(data));
+
+    let i,n=data.length;
+
+    for(let i in data){
+        try{
+        await prisma.userTable.create({
+            data: {
+              handle: data[i].handle,
+              organization: data[i].organization,
+              fullName: data[i].firstName+' '+data[i].lastName
+            }
+        })
+        }
+        catch(err){
+            console.log(err,data[i].handle);
+        }
+
+    }
+
     return data;
 }
 
@@ -52,12 +80,22 @@ async function findMatch(data,org){
 
 async function createRank(contestNo,org){
     const result = await axios.get('https://codeforces.com/api/contest.standings?contestId='+contestNo+'&from=1');
-    const ranklist= await findMatch(result,org);
+    const res= await findMatch(result,org);
     
     // To save data...
-    const fs= require('fs');
-    const path = require('path')
-    let file_name = "updatedRanklist.json";
-    fs.writeFileSync( path.join(__dirname,`../sample_data/`, file_name) , JSON.stringify(ranklist));
+    let i,n=res.length;
+    for(i=0;i<n;i++){
+        await prisma.RankList.create({
+            data: {
+              Id: i+1,
+              handle: res[i].handle,
+              rank: res[i].rank,
+              solve_count: res[i].solve_count,
+              penalty: res[i].penalty,
+              contest_id: contestNo
+            },
+        })
+    }
 }
+
 module.exports={userFetch,filtering,findingResult,createRank,findMatch};
