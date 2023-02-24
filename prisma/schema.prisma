@@ -19,6 +19,13 @@ model RankList{
   contest_id Int?
 }
 
+model CombineRankList{
+  Id Int @id @default(autoincrement())
+  handle  String @db.VarChar(255) 
+  solve_count Int 
+  penalty Int 
+}
+
 model userTable{
   handle  String @id @db.VarChar(255)
   organization String @db.VarChar(255)

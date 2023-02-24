@@ -1,6 +1,7 @@
-var no = 10;
-var username = "sha".concat(no, "jib");
+"use strict";
+let no = 10;
+let username = `sha${no}jib`;
 username = 10;
 console.log(username);
-var user = "fuck";
+let user = "fuck";
 console.log(user);

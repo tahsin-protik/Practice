@@ -1,10 +1,10 @@
 
 require('dotenv').config()
-const { PrismaClient } = require('@prisma/client')
-const prisma = new PrismaClient()
+const { PrismaClient }:any = require('@prisma/client')
+const prisma:any = new PrismaClient()
 
 async function update() {
-    const post = await prisma.RankList.update({
+    const post:any = await prisma.RankList.update({
       where: { Id: 1 },
       data: { handle: 'Abdur_Rahman_Shajib' },
     })
@@ -12,10 +12,10 @@ async function update() {
 }
 
 async function fetchData(){
-    let data = await prisma.RankList.findMany();
+    let data:any = await prisma.RankList.findMany();
     //console.log(data);
 }
-async function Delete(){
+async function Delete() {
     await prisma.RankList.deleteMany({})
     //     await prisma.RankList.delete({
 //     where: {
